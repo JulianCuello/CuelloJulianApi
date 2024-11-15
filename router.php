@@ -1,7 +1,7 @@
 
 <?php
 require_once 'libs/router.php';
-require_once 'app/controllers/producto.controller.php';
+require_once 'app/controllers/toy.controller.php';
 require_once 'app/controllers/user.api.controller.php';
 require_once 'app/middlewares/jwt.auth.middleware.php';
 
