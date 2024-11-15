@@ -13,7 +13,7 @@ class ToyController
         $this->view = new JSONView();
     }
 
-    public function getProductos($req, $res)
+    public function getToys($req, $res)
     {
         //ordenamiento por atibuto
         $orderBy = false;
@@ -42,7 +42,7 @@ class ToyController
         return $this->view->response($productos);
     }
 
-    public function getProducto($req, $res)
+    public function getToy($req, $res)
     {
         $id = $req->params->id;
         $producto = $this->modelProducto->getProducto($id);
@@ -54,7 +54,7 @@ class ToyController
 
 
 
-    public function createProducto($req, $res)
+    public function createToy($req, $res)
     {
         if (!$res->user) {
             return $this->view->response("No autorizado", 401);
@@ -64,15 +64,15 @@ class ToyController
             return $this->view->response('Faltan completar datos', 400);
         }
 
-        $nombre = $req->body->nombre;
-        $categoria = $req->body->categoria;
+        $nombreProducto = $req->body->nombreProducto;
         $precio = $req->body->precio;
-        $marca = $req->body->marca;
-        $descripcion = $req->body->descripcion;
-        $URL_imagen = $req->body->URL_imagen;
+        $material = $req->body->material;
+        $id_marca = $req->body->id_marca;
+        $codigo = $req->body->codigo;
+        $img = $req->body->img;
 
 
-        $id = $this->modelProducto->agregarProducto($nombre, $descripcion, $precio, $marca, $URL_imagen, $categoria);
+        $id = $this->modelProducto->agregarProducto($nombreProducto, $precio, $material, $id_marca, $codigo, $img);
         if (!$id) {
             return $this->view->response("Error al insertar tarea", 500);
         }
@@ -81,7 +81,7 @@ class ToyController
         return $this->view->response($producto, 201);
     }
 
-    public function updateProducto($req, $res)
+    public function updateToy($req, $res)
     {
         if (!$res->user) {
             return $this->view->response("No autorizado", 401);
@@ -108,7 +108,7 @@ class ToyController
         $producto = $this->modelProducto->getProducto($id);
         $this->view->response($producto, 200);
     }
-    public function deleteProducto($req, $res)
+    public function deleteToy($req, $res)
     {
         if (!$res->user) {
             return $this->view->response("No autorizado", 401);
@@ -118,7 +118,7 @@ class ToyController
         if (!$producto) {
             return $this->view->response("El producto con el id=$id no existe", 404);
         }
-        $this->modelProducto->borrarProducto($id);
+        $this->modelProducto->eraseToy($id);
         $this->view->response("El producto con el id=$id se eliminó con éxito");
     }
 }
