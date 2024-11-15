@@ -78,7 +78,7 @@ class ToyController
         }
 
         $producto = $this->modelProducto->getProducto($id);
-        return $this->view->response($producto, 201);
+        return $this->view->response($toy, 201);
     }
 
     public function updateToy($req, $res)
@@ -90,22 +90,23 @@ class ToyController
         $id = $req->params->id;
         $producto = $this->modelProducto->getProducto($id);
 
-        if (!$producto) {
+        if (!$toy) {
             return $this->view->response("El producto con el id=$id no existe", 404);
         }
         if (empty($req->body->nombre)  || empty($req->body->precio) || empty($req->body->marca) || empty($req->body->descripcion) || empty($req->body->URL_imagen) || empty($req->body->categoria)) {
             return $this->view->response('Faltan completar datos', 400);
         }
-        $nombre = $req->body->nombre;
-        $categoria = $req->body->categoria; //ID_Categorias
+        $nombreProducto = $req->body->nombreProducto;
         $precio = $req->body->precio;
-        $marca = $req->body->marca;
-        $descripcion = $req->body->descripcion;
-        $URL_imagen = $req->body->URL_imagen;
-        $this->modelProducto->editarProducto($nombre, $descripcion, $precio, $marca, $URL_imagen, $categoria, $id);
+        $material = $req->body->material;
+        $id_marca = $req->body->id_marca;
+        $codigo = $req->body->codigo;
+        $img = $req->body->img;
+
+        $this->modelProducto->ediToy($id_juguete,$nombreProducto, $precio, $material, $id_marca, $codigo, $img);
 
         // obtengo la tarea modificada y la devuelvo en la respuesta
-        $producto = $this->modelProducto->getProducto($id);
+        $toy = $this->modelProducto->getProducto($id);
         $this->view->response($producto, 200);
     }
     public function deleteToy($req, $res)
@@ -114,11 +115,11 @@ class ToyController
             return $this->view->response("No autorizado", 401);
         }
         $id = $req->params->id;
-        $producto = $this->modelProducto->getProducto($id);
-        if (!$producto) {
+        $toy = $this->modelProducto->getProducto($id);
+        if (!$juguete) {
             return $this->view->response("El producto con el id=$id no existe", 404);
         }
-        $this->modelProducto->eraseToy($id);
+        $this->modelToy->eraseToy($id);
         $this->view->response("El producto con el id=$id se eliminó con éxito");
     }
 }
