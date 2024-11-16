@@ -1,5 +1,5 @@
 <?php
-include_once './app/models/producto.model.php';
+include_once './app/models/toy.model.php';
 require_once './app/views/json.view.php';
 
 class ToyController
@@ -38,21 +38,19 @@ class ToyController
             $valor = $req->query->valor;
         }
 
-        $toy = $this->modelProducto->getProductos($orderBy, $direccion, $pagina, $limite, $filtro, $valor);
+        $toy = $this->modelToy->goToys($orderBy, $direccion, $pagina, $limite, $filtro, $valor);
         return $this->view->response($productos);
     }
 
     public function getToy($req, $res)
     {
         $id = $req->params->id;
-        $toy = $this->modelProducto->getProducto($id);
-        if (!$producto) {
+        $toy = $this->modelToy->goToy($id);
+        if (!$toy) {
             return $this->view->response("El producto con el id=$id no existe", 404);
         }
-        return $this->view->response($producto);
+        return $this->view->response($toy);
     }
-
-
 
     public function createToy($req, $res)
     {
@@ -72,12 +70,12 @@ class ToyController
         $img = $req->body->img;
 
 
-        $id = $this->modelProducto->agregarProducto($nombreProducto, $precio, $material, $id_marca, $codigo, $img);
+        $id = $this->modelProducto->addToy($nombreProducto, $precio, $material, $id_marca, $codigo, $img);
         if (!$id) {
             return $this->view->response("Error al insertar tarea", 500);
         }
 
-        $toy = $this->modelToy->getProducto($id);
+        $toy = $this->modelToy->goToy($id);
         return $this->view->response($toy, 201);
     }
 
@@ -88,7 +86,7 @@ class ToyController
         }
 
         $id = $req->params->id;
-        $producto = $this->modelProducto->getProducto($id);
+        $toy = $this->modelToy->goToy($id);
 
         if (!$toy) {
             return $this->view->response("El producto con el id=$id no existe", 404);
@@ -103,10 +101,10 @@ class ToyController
         $codigo = $req->body->codigo;
         $img = $req->body->img;
 
-        $this->modelProducto->ediToy($id_juguete,$nombreProducto, $precio, $material, $id_marca, $codigo, $img);
+        $this->modelToy->editToy($id_juguete,$nombreProducto, $precio, $material, $id_marca, $codigo, $img);
 
         // obtengo la tarea modificada y la devuelvo en la respuesta
-        $toy = $this->modelProducto->getProducto($id);
+        $toy = $this->modelToy->goToy($id);
         $this->view->response($producto, 200);
     }
     public function deleteToy($req, $res)
@@ -115,8 +113,8 @@ class ToyController
             return $this->view->response("No autorizado", 401);
         }
         $id = $req->params->id;
-        $toy = $this->modelProducto->getProducto($id);
-        if (!$juguete) {
+        $toy = $this->modelToy->goToy($id);
+        if (!$toy) {
             return $this->view->response("El producto con el id=$id no existe", 404);
         }
         $this->modelToy->eraseToy($id);

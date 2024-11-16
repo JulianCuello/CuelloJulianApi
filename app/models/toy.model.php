@@ -3,7 +3,7 @@ require_once 'app/models/model.php';
 class ToyModel extends Model
 {
 
-    public function getToys($orderBy = false, $direccion = " ASC", $pagina, $limite, $filtro, $valor)
+    public function goToys($orderBy = false, $direccion = " ASC", $pagina, $limite, $filtro, $valor)
     {
         $sql = 'SELECT * FROM juguete';
         //filtro , $filtro es el atributo y $valor es el valor
@@ -74,7 +74,7 @@ class ToyModel extends Model
         return $toy;
     }
 
-    public function getToy($id)
+    public function goToy($id)
     {
         $query = $this->db->prepare('SELECT * FROM juguete WHERE id_juguete = ?');
         $query->execute([$id]);
