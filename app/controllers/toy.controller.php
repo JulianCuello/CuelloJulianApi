@@ -38,14 +38,14 @@ class ToyController
             $valor = $req->query->valor;
         }
 
-        $productos = $this->modelProducto->getProductos($orderBy, $direccion, $pagina, $limite, $filtro, $valor);
+        $toy = $this->modelProducto->getProductos($orderBy, $direccion, $pagina, $limite, $filtro, $valor);
         return $this->view->response($productos);
     }
 
     public function getToy($req, $res)
     {
         $id = $req->params->id;
-        $producto = $this->modelProducto->getProducto($id);
+        $toy = $this->modelProducto->getProducto($id);
         if (!$producto) {
             return $this->view->response("El producto con el id=$id no existe", 404);
         }
@@ -77,7 +77,7 @@ class ToyController
             return $this->view->response("Error al insertar tarea", 500);
         }
 
-        $producto = $this->modelProducto->getProducto($id);
+        $toy = $this->modelToy->getProducto($id);
         return $this->view->response($toy, 201);
     }
 

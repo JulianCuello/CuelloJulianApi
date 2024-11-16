@@ -70,16 +70,16 @@ class ToyModel extends Model
         }
 
         $query->execute();
-        $productos = $query->fetchAll(PDO::FETCH_OBJ);
-        return $productos;
+        $toy = $query->fetchAll(PDO::FETCH_OBJ);
+        return $toy;
     }
 
     public function getToy($id)
     {
         $query = $this->db->prepare('SELECT * FROM juguete WHERE id_juguete = ?');
         $query->execute([$id]);
-        $producto = $query->fetch(PDO::FETCH_OBJ);
-        return $producto;
+        $toy = $query->fetch(PDO::FETCH_OBJ);
+        return $toy;
     }
 
     public function addToy($nombreProducto, $precio, $material, $id_marca, $codigo, $img)
