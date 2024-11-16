@@ -58,7 +58,7 @@ class ToyController
             return $this->view->response("No autorizado", 401);
         }
 
-        if (empty($req->body->nombre)  || empty($req->body->precio) || empty($req->body->marca) || empty($req->body->descripcion) || empty($req->body->URL_imagen) || empty($req->body->categoria)) {
+        if (empty($req->body->nombreProducto)  || empty($req->body->precio) || empty($req->body->material) || empty($req->body->id_marca) || empty($req->body->codigo) || empty($req->body->img)) {
             return $this->view->response('Faltan completar datos', 400);
         }
 
@@ -91,7 +91,7 @@ class ToyController
         if (!$toy) {
             return $this->view->response("El producto con el id=$id no existe", 404);
         }
-        if (empty($req->body->nombre)  || empty($req->body->precio) || empty($req->body->marca) || empty($req->body->descripcion) || empty($req->body->URL_imagen) || empty($req->body->categoria)) {
+        if (empty($req->body->nombreProducto)  || empty($req->body->precio) || empty($req->body->material) || empty($req->body->id_marca) || empty($req->body->codigo) || empty($req->body->img)) {
             return $this->view->response('Faltan completar datos', 400);
         }
         $nombreProducto = $req->body->nombreProducto;
