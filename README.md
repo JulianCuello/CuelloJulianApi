@@ -20,7 +20,7 @@ Es decir:es una API REST que permite la consulta, modificación, eliminación e 
 
 ### URL de Ejemplo
 
-`tpespecialrest/api/productos`
+`jugueteriaApi/api/productos`
 
 ---
 
