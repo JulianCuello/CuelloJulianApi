@@ -70,6 +70,7 @@ class ToyController
 
 
         $id = $this->modelProducto->addToy($nombreProducto, $precio, $material, $id_marca, $codigo, $img);
+        
         if (!$id) {
             return $this->view->response("Error al insertar tarea", 500);
         }
