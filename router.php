@@ -10,11 +10,11 @@ $router->addMiddleware(new JWTAuthMiddleware());
 
 
 #                 endpoint                      verbo           controller              metodo
-$router->addRoute('toys',            'GET',     'ProductoController',   'getToys');
-$router->addRoute('toys/:id',            'GET',     'ProductoController',   'getToy');
-$router->addRoute('toys/:id',            'DELETE',  'ProductoController',   'deleteToy');
-$router->addRoute('toys',                'POST',    'ProductoController',   'createToy');
-$router->addRoute('toys/:id',            'PUT',     'ProductoController',    'updateToy');
+$router->addRoute('toys',            'GET',     'ToyController',   'getToys');
+$router->addRoute('toy/:id',            'GET',     'ToyController',   'getToy');
+$router->addRoute('toy/:id',            'DELETE',  'ToyController',   'deleteToy');
+$router->addRoute('toy',                'POST',    'ToyController',   'createToy');
+$router->addRoute('toy/:id',            'PUT',     'ToyController',    'updateToy');
 
 $router->addRoute('usuarios/token',            'GET',     'UserApiController',   'getToken');
 

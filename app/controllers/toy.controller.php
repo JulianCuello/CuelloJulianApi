@@ -38,12 +38,11 @@ class ToyController
             $valor = $req->query->valor;
         }
 
-        $toy = $this->modelToy->goToys($orderBy, $direccion, $pagina, $limite, $filtro, $valor);
-        return $this->view->response($productos);
+        $toys = $this->modelToy->goToys($orderBy, $direccion, $pagina, $limite, $filtro, $valor);
+        return $this->view->response($toys);
     }
 
-    public function getToy($req, $res)
-    {
+    public function getToy($req, $res) {
         $id = $req->params->id;
         $toy = $this->modelToy->goToy($id);
         if (!$toy) {

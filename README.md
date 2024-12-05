@@ -100,12 +100,12 @@ Es decir:es una API REST que permite la consulta, modificación, eliminación e 
 
 ---
 
-- **GET** `jugueteriaApi/api/toys/:ID`  
+- **GET** `jugueteriaApi/api/toy/:ID`  
   Devuelve el juguete correspondiente al `ID` solicitado.
 
 ---
 
-- **POST** `jugueteriaApi/api/toys`  
+- **POST** `jugueteriaApi/api/toy`  
   Inserta un nuevo juguete con la información proporcionada en el cuerpo de la solicitud (en formato JSON).
 
   - **Campos requeridos**:
